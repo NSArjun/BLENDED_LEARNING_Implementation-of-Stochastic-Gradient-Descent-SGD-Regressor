@@ -1,4 +1,3 @@
-# BLENDED_LEARNING
 # Implementation-of-Stochastic-Gradient-Descent-SGD-Regressor
 
 ## AIM:
@@ -37,11 +36,11 @@ To write a program to implement Stochastic Gradient Descent (SGD) Regressor for 
    Make predictions and visualize the results.
 
 ## Program:
-```
+```py
 /*
 Program to implement SGD Regressor for linear regression.
-Developed by: Arjun N S
-RegisterNumber: 21222323020
+Developed by: ARJUN N S
+RegisterNumber: 212223230020
 */
 
 # Importing necessary libraries
@@ -51,6 +50,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import SGDRegressor
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.preprocessing import StandardScaler
 
 # Load the dataset
 data = pd.read_csv("https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML240EN-SkillsNetwork/labs/data/CarPrice_Assignment.csv")
@@ -63,6 +63,11 @@ data = pd.get_dummies(data, drop_first=True)
 # Splitting the data into features and target variable
 X = data.drop('price', axis=1)
 y = data['price']
+
+# Standardizing the data
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+y = scaler.fit_transform(np.array(y).reshape(-1, 1))
 
 # Splitting the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -94,7 +99,8 @@ plt.show()
 ```
 
 ## Output:
-<img width="780" alt="Screenshot 2024-10-06 at 8 48 56 PM" src="https://github.com/user-attachments/assets/02eb9acd-52d8-4e8e-bc89-bb080032cfb9">
+![alt text](image.png)
+![alt text](image-1.png)
 
 
 
